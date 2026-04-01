@@ -3,7 +3,7 @@ import argparse
 def to_camel_case(snake_str):
     return "".join(x.capitalize() for x in snake_str.lower().split("_"))
 
-src = "./abstract_scraper.py"
+src = "./event_scrapers/abstract_scraper.py"
 parser = argparse.ArgumentParser(
                     prog='NewScraper',
                     description='Creates a new scraper'
@@ -40,5 +40,5 @@ class {to_camel_case(scraper_name)}Spider(AbstractScraper):
         return dt
 """
 
-with open(f"./event_scrapers/spiders/{scraper_name}_spider.py", "w") as f:
+with open(f"./event_scrapers/event_scrapers/spiders/{scraper_name}_spider.py", "w") as f:
     f.write(scraper_code)
