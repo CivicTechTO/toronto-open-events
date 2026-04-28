@@ -9,10 +9,10 @@ from itemadapter import ItemAdapter
 
 class EventScrapersPipeline:
     def process_item(self, item, spider):
-        with open("./scraped_data/" + spider.name + ".jsonl", "a") as file:
-            # TODO: write sqlite writer
-            adapter = ItemAdapter(item)            
-            d = adapter.asdict()
-            file.write(str(d) + "\n")
+        with open(self.scraper_file_name(spider), "a+") as file:
+            file.write(item.toJSON() + "\n")
 
         return item
+
+    def scraper_file_name(self, spider):
+        return "../scraped_data/" + spider.name + ".jsonl"
