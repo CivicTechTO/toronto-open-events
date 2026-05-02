@@ -38,7 +38,7 @@ jobs:
       - name: execute py script
         run: |
           cd src
-          poetry run scripts/scrape_all.py
+          poetry run python scripts/scrape_all.py
 
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
