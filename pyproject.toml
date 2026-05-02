@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "toronto-open-events"
+version = "0.1.0"
+description = "A program to scrape and collect events in Toronto"
+authors = ["Isaac McAuley <mcauleyisaac@gmail.com>"]
+license = "GPL"
+readme = "README.md"
+packages = [{ include = "toronto_open_events" }]
+
+[tool.poetry.dependencies]
+python = "^3.14"
+scrapy = "^2.15.2"
+open-event-feed = "^0.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
