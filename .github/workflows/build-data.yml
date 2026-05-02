@@ -17,23 +17,24 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }} # checkout the repository content
 
-      - name: Install chrome dependencies
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v4
+      - name: Setup a local virtual environment (if no poetry.toml file)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
-      - name: setup python
-        uses: actions/setup-python@v4
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
         with:
-          python-version: "3.10.8" # install the python version needed
-
-      - name: Install Python dependencies
-        uses: py-actions/py-dependency-install@v4
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install the project dependencies
+        run: poetry install
 
       - name: execute py script
         run: |
-          cd src/event_scrapers
-          uv run scripts/scrape_all.py
+          cd src
+          poetry run scripts/scrape_all.py
 
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
