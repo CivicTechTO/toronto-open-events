@@ -1,8 +1,8 @@
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlunparse, urljoin, urlparse, parse_qsl
 import scrapy
 import datetime
 from abstract_scraper import AbstractScraper
-from urllib.parse import urljoin
+
 
 class CrowsTheatreSpider(AbstractScraper):
     name = "crows_theatre"
@@ -11,12 +11,17 @@ class CrowsTheatreSpider(AbstractScraper):
     ORGANIZER_NAME = "Crows Theatre"
     ORGANIZER_LINK = "https://www.crowstheatre.com/"
 
-    # def parse(self, response):
-    #     available_months = response.xpath('//select[@id="select-month"]/option')
-    #     for available_month in available_months:
-    #         val = available_month.attrib["value"]
-    #         next_url = self.start_urls[0] + urlencode({"month": val})
-    #         yield response.follow(next_url, self.parse_event_page)
+    def get_all_pages_urls(self, response):
+        base_url = self.start_urls[0]
+        url_parts = list(urlparse(base_url))
+        available_months = response.xpath('//select[@id="select-month"]/option')
+
+        for available_month in available_months:
+            query = dict(parse_qsl(url_parts[4]))
+            query.update({"month": available_month.attrib["value"]})
+            url_parts[4] = urlencode(query)
+
+            yield urlunparse(url_parts)
 
     def get_all_events(self, response):
         return response.xpath('//div[@class="schedule"]/div')

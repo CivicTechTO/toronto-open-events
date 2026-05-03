@@ -8,9 +8,17 @@ class AbstractScraper(scrapy.Spider):
     additional_data_for_all = {}
 
     def parse(self, response):
+        for url in self.get_all_pages_urls(response):
+            yield response.follow(url, self.parse_page)
+
+    def parse_page(self, response):
         event_htmls = self.get_all_events(response)
         for e in event_htmls:
             yield self.event_html_to_object(e)
+
+    def get_all_pages_urls(self, response):
+        for url in self.start_urls:
+            yield url
 
     def get_start_date(self, event_html):
         """
