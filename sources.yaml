@@ -1,0 +1,30 @@
+event-sources:
+  - name: "The Baby G"
+    slug: "babyg"
+    type: "concerts"
+    origin: "http://thebabyg.com/"
+
+  - name: "The Garrison"
+    slug: "the_garrison"
+    type: "concerts"
+    origin: "http://www.garrisontoronto.com/"
+
+  - name: "The Phoenix Concert Theatre"
+    slug: "phoenix"
+    type: "concerts"
+    origin: "https://thephoenixconcerttheatre.com/"
+
+  - name: "Horseshoe Tavern"
+    slug: "horseshoe_tavern"
+    type: "concerts"
+    origin: "https://horseshoetavern.com/"
+
+  - name: "Great Hall"
+    slug: "great_hall"
+    type: "events"
+    origin: "https://thegreathall.ca/"
+
+  - name: "Crow's Theatre"
+    slug: "crowns_theatre"
+    type: "Theatre"
+    origin: "https://www.crowstheatre.com/"
