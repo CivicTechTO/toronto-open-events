@@ -40,6 +40,12 @@ jobs:
           cd src/toronto_open_events
           poetry run run_all_scrapers
 
+      - name: transform data
+        run: |
+          cd src/toronto_open_events
+          poetry run dedupe_scraped_data
+          poetry run create_xcal_feeds
+
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
           add: "."
