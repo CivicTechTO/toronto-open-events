@@ -7,6 +7,7 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 
+
 class EventScrapersPipeline:
     def process_item(self, item, spider):
         with open(self.scraper_file_name(spider), "a+") as file:
@@ -15,4 +16,4 @@ class EventScrapersPipeline:
         return item
 
     def scraper_file_name(self, spider):
-        return "../scraped_data/" + spider.name + ".jsonl"
+        return "../../scraped_data/" + spider.name + ".jsonl"

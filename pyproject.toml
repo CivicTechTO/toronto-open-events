@@ -5,14 +5,17 @@ description = "A program to scrape and collect events in Toronto"
 authors = ["Isaac McAuley <mcauleyisaac@gmail.com>"]
 license = "GPL"
 readme = "README.md"
-packages = [{ include = "toronto_open_events" }]
-package-mode = false
+packages = [{ include = "toronto_open_events", from = "src" }]
+package-mode = true
 
 [tool.poetry.dependencies]
 python = "^3.14"
 scrapy = "^2.15.2"
 open-event-feed = "^0.1.3"
 
+[tool.poetry.scripts]
+run_all_scrapers = "toronto_open_events.scripts.scrape_all:run_all_spiders"
+dedupe_scraped_data = "toronto_open_events.scripts.dedupe_scraped_data:run"
 
 [build-system]
 requires = ["poetry-core"]

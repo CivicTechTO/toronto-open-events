@@ -3,6 +3,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from scrapy.utils.log import configure_logging
 
+
 def run_all_spiders():
     settings = get_project_settings()
 
@@ -15,6 +16,6 @@ def run_all_spiders():
 
     process.start()
 
+
 if __name__ == "__main__":
     run_all_spiders()
-
