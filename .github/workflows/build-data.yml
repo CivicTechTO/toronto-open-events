@@ -35,10 +35,10 @@ jobs:
       - name: Install the project dependencies
         run: poetry install
 
-      - name: execute py script
+      - name: run scrapers
         run: |
-          cd src
-          poetry run python scripts/scrape_all.py
+          cd src/toronto_open_events
+          poetry run run_all_scrapers
 
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
