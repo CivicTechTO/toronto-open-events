@@ -9,9 +9,12 @@ def events_from_feed(name):
 
     with open(BASE_URL + name, "r") as f:
         for line in f:
-            print(line)
-            ei = EventItem.fromJSON(line)
-            set_of_data.append(ei)
+            try:
+                ei = EventItem.fromJSON(line)
+                set_of_data.append(ei)
+            except:
+                TypeError
+                pass
 
     return set_of_data
 

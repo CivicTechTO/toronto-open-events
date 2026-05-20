@@ -16,6 +16,7 @@ open-event-feed = "^0.1.3"
 [tool.poetry.scripts]
 run_all_scrapers = "toronto_open_events.scripts.scrape_all:run_all_spiders"
 dedupe_scraped_data = "toronto_open_events.scripts.dedupe_scraped_data:run"
+create_xcal_feeds = "toronto_open_events.scripts.create_xcal_feeds:run"
 
 [build-system]
 requires = ["poetry-core"]
