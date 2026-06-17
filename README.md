@@ -1,4 +1,4 @@
-# Open Calendar Toronto
+# Toronto Open Events
 
 This is a project to collect events from Toronto event venues and organizers and aggregate them into a single feed.
 
