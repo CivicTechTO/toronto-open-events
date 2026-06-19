@@ -17,6 +17,11 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: newest-data
 
+      - name: Set Git config
+        run: |
+          git config --local user.email "dontclick@dontclick.com"
+          git config --local user.name "Github Actions Robot"
+
       - name: Get new code
         run: |
           git fetch --unshallow
