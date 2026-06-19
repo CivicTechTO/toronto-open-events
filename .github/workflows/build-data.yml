@@ -15,7 +15,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }} # checkout the repository content
+          ref: newest-data
+
+      - name: Get new code
+        uses: tiacsys/git-rebase@v3
+        with:
+          repo: ${{ github.event.pull_request.head.repo.full_name }}
+          source_branch: main
+          destination_branch: newest-data
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -61,8 +68,6 @@ jobs:
           # The message for the commit.
           # Default: 'Commit from GitHub Actions (name of the workflow)'
           message: "New data for ${{ steps.date.outputs.date }}"
-
-          new_branch: newest-data
 
           # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (see the paragraph below for more info)
           # Default: true
