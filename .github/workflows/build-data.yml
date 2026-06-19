@@ -18,11 +18,11 @@ jobs:
           ref: newest-data
 
       - name: Get new code
-        uses: tiacsys/git-rebase@v3
-        with:
-          repo: ${{ github.event.pull_request.head.repo.full_name }}
-          source_branch: main
-          destination_branch: newest-data
+        run: |
+          git fetch
+          git checkout main
+          git merge -no-ff origin/newest-data -m "Auto merge"
+
 
       - name: setup python
         uses: actions/setup-python@v4
