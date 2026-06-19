@@ -21,7 +21,7 @@ jobs:
         run: |
           git fetch
           git checkout main
-          git merge -no-ff origin/newest-data -m "Auto merge"
+          git merge --no-ff origin/newest-data -m "Auto merge"
 
 
       - name: setup python
